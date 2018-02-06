@@ -1,31 +1,39 @@
 //Create base population
 var population = [];
-var population_size = 1000;
+var population_size = 800;
 var target = "Cruella DeVille if she doesnt scare you no evil thing will"
 var generation = [];
 var generation_nb = 0;
 
-var nongraded_retain_percent = 0.2;
-var graded_retain_percent = 0.3;
+var nongraded_retain_percent = 0.1;
+var graded_retain_percent = 0.2;
 
 var mutationRate = 0.001;
 
 var mating_pool;
 
+var date_object;
+var start_time, end_time, current_time;
+
 function setup(){
 
 	createCanvas(windowWidth, windowHeight);
+
+	//Start timer
+	date_object = new Date();
+	start_time = date_object.getTime();
 
 	//Fill population array
 	for(var i = 0; i < population_size; i++){
 		population[i] = new Chromosome(target.length);
 	}
 
-
 }
 
 function draw(){
 
+	date_object = new Date();
+	current_time = date_object.getTime() - start_time;
 
 	background(255, 255, 255);
 
@@ -34,6 +42,8 @@ function draw(){
 		population[i].evaluateFitness(target);
 		if(population[i].fitness == 1){
 			noLoop();
+			date_object = new Date();
+			end_time = date_object.getTime();
 		}
 	}
 
@@ -98,5 +108,6 @@ function draw(){
 	clear();
 	text(population[0].phenotype(), 10, 30);
 	text('Generation :' + generation_nb, 10, 80);
+	text('Time running (seconds):'+ current_time/1000, 10, 120);
 
 }

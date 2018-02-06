@@ -1,3 +1,4 @@
+
 function random(min, max){
 	if(max > 0){
 		min = Math.ceil(min);
