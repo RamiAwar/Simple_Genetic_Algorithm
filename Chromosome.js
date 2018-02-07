@@ -1,4 +1,9 @@
-
+/**
+ ** Returns a random float between min and max provided
+ ** @param  {Integer} min Minimum value of float, default value is 0
+ ** @param  {Integer} max Maximum value of float, no default value provided
+ ** @return {Float} Random number between minimum and maximum provided
+ **/
 function random(min, max){
 	if(max > 0){
 		min = Math.ceil(min);
